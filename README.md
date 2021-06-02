@@ -4,9 +4,9 @@
 
 ## Links and Resources]
 
-PR #1:[link](https://github.com/S2Mackinley/todo-codefellows/pull/1)
+[PR: 1](https://github.com/S2Mackinley/todo-codefellows/pull/1)
 
-Deployed: [link](https://s2mackinley.github.io/todo-codefellows/)
+[Deployed:](https://s2mackinley.github.io/todo-codefellows/)
 
 ### Dependencies
 
