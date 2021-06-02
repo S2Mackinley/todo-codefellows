@@ -6,7 +6,7 @@
 
 [PR: 1](https://github.com/S2Mackinley/todo-codefellows/pull/1)
 
-[Deployed:](https://s2mackinley.github.io/todo-codefellows/)
+[Deployed:](https://todo-list-ep.netlify.app/)
 
 ### Dependencies
 
