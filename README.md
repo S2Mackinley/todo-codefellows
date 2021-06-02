@@ -4,9 +4,9 @@
 
 ## Links and Resources]
 
-[PR: 1](https://github.com/S2Mackinley/todo-codefellows/pull/1)
+[PR:1 Link](https://github.com/S2Mackinley/todo-codefellows/pull/1)
 
-[Deployed:](https://todo-list-ep.netlify.app/)
+[Deployed Link](https://todo-list-ep.netlify.app/)
 
 ### Dependencies
 
