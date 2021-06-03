@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TodoForm from './Form.js';
 import TodoList from './List.js';
+import useAjax from '../../hooks/ajax';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
@@ -9,9 +10,10 @@ import './todo.scss';
 
 function ToDo() {
 	const [list, setList] = useState([]);
+	const [handleGet, handlePost, handlePut, handleDelete] = useAjax();
 
 	const addItem = (item) => {
-		item._id = Math.random();
+		// item._id = Math.random();
 		item.complete = false;
 		setList([...list, item]);
 	};
@@ -26,22 +28,29 @@ function ToDo() {
 		}
 	};
 
-	useEffect(() => {
-		let list = [
-			{ _id: 1, complete: true, text: 'Clean the bedroom.', difficulty: 3, assignee: 'Person A' },
-			{ _id: 2, complete: true, text: 'Do the laundry and fold it.', difficulty: 2, assignee: 'Person A' },
-			{ _id: 3, complete: false, text: 'Take the dog for a nice long walk.', difficulty: 4, assignee: 'Person B' },
-			{
-				_id: 4,
-				complete: true,
-				text: 'Run to the store and grab eggs and milk for breakfast.',
-				difficulty: 3,
-				assignee: 'Person C',
-			},
-		];
+	const deleteItem = (id) => {
+		let item = list.filter((i) => i._id === id)[0] || {};
 
-		setList(list);
-	}, []);
+		if (item._id) {
+			handleDelete(id, () =>
+				setList(
+					list.filter((listItem) => {
+						console.log(typeof listItem._id, typeof id);
+						return listItem._id !== id;
+					})
+				)
+			);
+		}
+	};
+
+	useEffect(() => {
+		handleGet((dataArray) => setList(dataArray));
+	}, [handleGet]);
+
+	useEffect(() => {
+		let count = list.filter((item) => !item?.complete).length;
+		document.title = `Todo App-${count} item(s) to complete`;
+	}, [list]);
 
 	return (
 		<>
@@ -56,7 +65,7 @@ function ToDo() {
 					<div>
 						<TodoForm handleSubmit={addItem} />
 					</div>
-					<TodoList list={list} handleComplete={toggleComplete} />
+					<TodoList list={list} handleComplete={toggleComplete} handleDelete={deleteItem} />
 				</section>
 			</Container>
 		</>

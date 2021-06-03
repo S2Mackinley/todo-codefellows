@@ -1,22 +1,36 @@
 import React from 'react';
 
-import ListGroup from 'react-bootstrap/ListGroup';
+import Modal from 'react-bootstrap/Modal';
+import { Toast, Badge, ListGroup } from 'react-bootstrap';
 
 function TodoList(props) {
 	return (
-		<ListGroup as="ul">
+		<ListGroup>
 			{props.list.map((item) => (
-				<ListGroup.Item
-					as="li"
-					variant={item.complete ? 'success' : 'danger'}
+				<Toast
+					className={`complete-${item.complete.toString()}`}
 					key={item._id}
-					onClick={() => props.handleComplete(item._id)}
+					onClose={() => {
+						props.handleDelete(item._id, 'delete');
+					}}
 				>
-					{item.text} - {item.assignee}
-				</ListGroup.Item>
+					<Toast.Header>
+						<Badge pill variant={item.complete ? 'success' : 'danger'}>
+							{item.complete ? 'Pending' : 'Complete'}
+						</Badge>
+						{item.assignee}
+					</Toast.Header>
+					<Toast.Body
+						onClick={() => {
+							props.handleComplete(item._id, 'put');
+						}}
+					>
+						{item.text}
+						<div class="difficulty">Difficulty: {item.difficulty}</div>
+					</Toast.Body>
+				</Toast>
 			))}
 		</ListGroup>
-		// className = {`complete-${item.complete.toString()}`}
 	);
 }
 
