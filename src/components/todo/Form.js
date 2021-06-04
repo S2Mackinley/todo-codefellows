@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useForm from '../../hooks/form.js';
+import useForm from '../hooks/form';
 
 import Button from 'react-bootstrap/Button';
 

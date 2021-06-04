@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TodoForm from './Form.js';
 import TodoList from './List.js';
-import useAjax from '../../hooks/ajax';
+import useAjax from '../hooks/ajax';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
